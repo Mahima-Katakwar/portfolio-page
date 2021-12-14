@@ -9,7 +9,7 @@ const notes = [
   {
     _id: "2",
     title: "Mern Stack Developer",
-    content: "Learned how to create a server in node JS and my first API",
+    content: "Learned how to create a server in node JS and my first APIs",
     category: "Learning",
   },
   {
