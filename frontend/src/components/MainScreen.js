@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Container } from "react-bootstrap";
 import "./MainScreen.css";
 
-const MainScreen = ({ title, children }) => {
+export const MainScreen = ({ title, children }) => {
   return (
     <div className="mainback">
       <Container>
