@@ -7,11 +7,11 @@ import {
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   const history = useHistory();
-
+  const userName = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
@@ -33,12 +33,15 @@ const Header = () => {
             <Nav.Link href="/mynotes">
               <Link to="/mynotes"> Candidate Data</Link>
             </Nav.Link>
-            <NavDropdown title="Mahima Katakwar" id="collasible-nav-dropdown">
+            <NavDropdown
+              title={userName && userName.name}
+              id="collasible-nav-dropdown"
+            >
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Item
                 onClick={() => {
                   localStorage.removeItem("userInfo");
-                  history.push("/");
+                  props.history.push("/");
                 }}
               >
                 Logout
@@ -51,4 +54,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

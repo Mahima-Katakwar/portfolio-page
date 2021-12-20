@@ -7,22 +7,32 @@ import axios from "axios";
 
 const MyNotes = () => {
   const [notes, setNotes] = useState([]);
+  const [isDeleted, setisDeleted] = useState(false);
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are You Sure?")) {
-    }
+  const deleteHandler = async (id) => {
+    const config = {
+      "Content-type": "application/json",
+    };
+    const res = await axios.post(
+      "/api/users/delete",
+      {
+        id,
+      },
+      config
+    );
+    return setisDeleted(true);
   };
 
   const fetchNotes = async () => {
-    const { data } = await axios.get("/api/notes/");
+    const { data } = await axios.get("/api/users/list");
     console.log(data);
-    setNotes(data);
+    setNotes(data.notes);
   };
   console.log(notes);
 
   useEffect(() => {
     fetchNotes();
-  }, []);
+  });
 
   return (
     <MainScreen title="Welcome Back Mahima Katakwar...">

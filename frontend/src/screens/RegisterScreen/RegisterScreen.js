@@ -148,7 +148,12 @@ const RegisterScreen = () => {
             onChange={(e) => postDetails(e.target.files[0])}
           />
 
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            className="mt-3"
+            style={{ display: "flex" }}
+          >
             Register
           </Button>
         </Form>
