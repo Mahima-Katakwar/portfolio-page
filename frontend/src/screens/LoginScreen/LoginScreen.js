@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { axios } from "axios";
+import axios from "axios";
 import MainScreen from "../../components/MainScreen";
 import "./LoginScreen";
 import Loading from "../../components/Loading";
@@ -12,8 +12,6 @@ const LoginScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {}, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -31,11 +29,13 @@ const LoginScreen = ({ history }) => {
         config
       );
 
-      console.log(data);
+      //console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data.message);
+      console.log(error.response);
+      console.log(error);
       setLoading(false);
     }
   };
